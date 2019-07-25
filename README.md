@@ -1,0 +1,2 @@
+# vue_SpringBoot
+使用vue和ElementUI搭建前台，SpringBoot搭建后台，完成基本数据的增删改查
