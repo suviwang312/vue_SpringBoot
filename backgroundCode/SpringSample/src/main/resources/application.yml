@@ -1,0 +1,18 @@
+
+mybatis:
+    config-location: classpath:mybatis/mybatis.cfg.xml
+    mapper-locations: classpath:mybatis/mapper/*.xml
+    type-aliases-package: com.neu.vo
+server:
+    port: 8888
+spring:
+    application:
+        name:sm
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: 
+        url: jdbc:mysql://127.0.0.1:3306/empdb?characterEncoding=utf8&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+logging:
+  level:
+    com.neu.dao : debug      

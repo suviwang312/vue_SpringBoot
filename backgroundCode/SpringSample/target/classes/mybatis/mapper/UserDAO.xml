@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.dao.UserDAO">
+
+
+<!-- 获取用户信息 -->
+<select id="findByUserName" resultType="UserVO">
+	SELECT cId,cUsername,cPwd 
+	FROM userinfo 
+	WHERE cUsername=#{cUsername}
+</select>
+
+<!-- 获取用户列表信息-CONCAT('%',#{cUserName},'%')动态拼接-模糊查询 -->
+<select id="userList" resultType="UserVO">
+	SELECT cId,cUsername,cPwd 
+	FROM userinfo 
+	<if test="cUsername!=null and cUsername!=''">
+		WHERE cUsername LIKE CONCAT('%',#{cUsername},'%')
+	</if>
+</select>
+<!-- 
+INSERT INTO persons (id,create_datetime,email,phone,sex,username)
+VALUES ('15',NOW(),'112','999','male','pleare')
+
+INSERT INTO userinfo (cId,cUsername,cPwd)
+
+VALUES ('2','qqq','11')
+ -->
+ <!-- 添加一条数据 -->
+<insert id="insertUser">
+	INSERT INTO userinfo
+	
+	VALUES (#{userVO.cId},#{userVO.cUsername},#{userVO.cPwd})
+</insert>
+
+<!--  删除一条  -->
+<delete id="deleteUser">
+	delete from userinfo 
+	where cId = #{cId}
+</delete>
+
+ <!--  更新一条公告  
+ UPDATE userinfo SET cId=5,cUsername='alice',cPwd='11'
+WHERE cId='5'
+ -->
+<update id="updateUser">
+	update userinfo 
+	set cUsername=#{userVO.cUsername},
+		cPwd=#{userVO.cPwd} where cId = #{userVO.cId}
+</update>
+
+</mapper>
